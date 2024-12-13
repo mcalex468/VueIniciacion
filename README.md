@@ -1,5 +1,31 @@
 # Guía de Vue.js
 
+# Indice
+
+1. [Creación de Proyecto](#creacion-de-proyecto)
+2. [Conceptos Básicos de Vue.js](#conceptos-básicos-de-vuejs)
+   - [ref()](#ref)
+   - [reactive()](#reactive)
+3. [Directivas](#directivas)
+   - [v-bind](#v-bind)
+   - [v-model](#v-model)
+   - [v-for + :key](#v-for--key)
+   - [v-if / v-else](#v-if--v-else)
+   - [v-show](#v-show)
+   - [v-on](#v-on)
+4. [Temas Específicos de Vue.js](#temas-específicos-de-vuejs)
+   - [defineProps](#defineprops)
+   - [defineEmits](#defineemits)
+   - [computed](#computed)
+   - [provide / inject](#provide--inject)
+5. [Conexión a JSON](#conexión-a-json)
+6. [Navegación con Vue Router](#navegación-con-vue-router)
+   - [router-link](#router-link)
+   - [router-view](#router-view)
+   - [Configuración del Router (Index.js)](#configuración-del-router-indexjs)
+
+---
+
 ## Creacion Projecto
 1. Comprobaciones :
 node -v         nmp -v
@@ -137,6 +163,9 @@ v-show para ocultar un elemento sin sacarlo del DOM.
 
 @ o v-on para manejar eventos.
 
+
+--> [Indice](#indice)
+
 ## Temas Específicos de Vue.js
 
 ### defineProps
@@ -230,6 +259,8 @@ const increaseCount = () => {
 ```
 ---
 
+--> [Indice](#indice)
+
 ### computed
 Las propiedades computadas (`computed`) son funciones que devuelven valores derivados de las propiedades del estado reactivo. Se recalculan automáticamente cuando cambian las propiedades dependientes. Muestran el valor a la vez que se escribe
 
@@ -307,6 +338,8 @@ if (!injectedMessage) {
 </script>
 ```
 ---
+
+--> [Indice](#indice)
 
 ### Conectarse a un JSON
 Para consumir un archivo JSON local en Vue.js, puedes importarlo directamente como un módulo de JavaScript.
@@ -388,6 +421,9 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+---
+--> [Indice](#indice)
 
 export default router;
 ```
