@@ -331,41 +331,65 @@ const usuarios = usuariosData.nombre;
 ---
 
 ### router-link
-`router-link` es un componente de Vue Router que permite crear enlaces de navegación entre diferentes rutas de la aplicación, de forma declarativa y con soporte para transiciones y estilos activos.
+El `router-link` es un componente de Vue Router que permite crear enlaces de navegación entre diferentes rutas de la aplicación, de forma declarativa y con soporte para transiciones y estilos activos.
+**(Menu.vue)**
 
-```vue
-<template>
-  <div>
-    <router-link to="/inicio" active-class="active-link">Inicio</router-link>
-    <router-link to="/perfil" active-class="active-link">Perfil</router-link>
-  </div>
-</template>
-```
+Este componente simplemente sera donde guardemos nuestros `Router-Link` con tal de optimizar
 
----
-
-### router-view
-`router-view` es un componente utilizado para renderizar el contenido de la ruta actual. Es donde las vistas asociadas a las rutas definidas se insertan dinámicamente.
-
-```vue
-<template>
-  <router-view />
-</template>
-```
-
----
-
-### Menú con Vue Router
 ```vue
 <template>
   <nav>
-    <router-link to="/inicio">Inicio</router-link> |
-    <router-link to="/acerca-de">Acerca de</router-link> |
-    <router-link to="/contacto">Contacto</router-link>
+    <router-link to="/" class="nav-link">Home</router-link>
+    <router-link to="/about" class="nav-link">About</router-link>
   </nav>
-  <router-view />
 </template>
 
-<script>
-export default {};
-</script>
+<script setup>
+// No necesitamos código adicional aquí ya que es un componente puramente de presentación.
+</script
+```
+### router-view
+`router-view` es un componente utilizado para renderizar el contenido de la ruta actual. Es donde las vistas asociadas a las rutas definidas se insertan dinámicamente, se coloca en el App.vue o donde quieres enseñar el contenido de la aplicación.
+
+**(App.vue)**
+```vue
+<template>
+  <div>
+    <Menu /> <!-- El menú siempre estará visible -->
+    <main>
+      <router-view /> <!-- Aquí se renderizarán las vistas según la ruta -->
+    </main>
+  </div>
+</template>
+
+```
+
+**(Index.js)**
+
+Aqui encontraremos las distintas rutas de las views, que serian las diferentes cosas que apareceran o se veran en la pagina suelen ser Views, y no componentes en si.
+
+```vue
+import { createRouter, createWebHistory } from 'vue-router';
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('../views/Home.vue'),
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue'), 
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;
+```
+---
+
