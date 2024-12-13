@@ -231,26 +231,29 @@ const increaseCount = () => {
 ---
 
 ### computed
-Las propiedades computadas (`computed`) son funciones que devuelven valores derivados de las propiedades del estado reactivo. Se recalculan automáticamente cuando cambian las propiedades dependientes.
+Las propiedades computadas (`computed`) son funciones que devuelven valores derivados de las propiedades del estado reactivo. Se recalculan automáticamente cuando cambian las propiedades dependientes. Muestran el valor a la vez que se escribe
 
 ```vue
 <template>
-  <p>Mensaje: {{ mensajeEnMayusculas }}</p>
+  <div>
+    <h1>{{ titulo }} </h1>
+    <h1>El número original es: {{ number }}</h1>
+    <h2>El número multiplicado por 2 es: {{ multipliedNumber }}</h2>
+    <input v-model="titulo" type="text" placeholder="Escribe el título">
+    <input v-model="number" type="number" placeholder="Escribe un número">
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      mensaje: 'hola mundo',
-    };
-  },
-  computed: {
-    mensajeEnMayusculas() {
-      return this.mensaje.toUpperCase();
-    },
-  },
-};
+<script setup>
+import { ref, computed } from 'vue';
+
+// Variable reactiva para almacenar el número
+const number = ref(0);
+
+// Propiedad computada que calcula el número multiplicado por 2
+const multipliedNumber = computed(() => {
+  return number.value * 2;
+});
 </script>
 ```
 
@@ -262,39 +265,47 @@ export default {
 **(Padre):**
 ```vue
 <template>
-  <Hijo />
+  <div>
+    <h1>Componente Padre</h1>
+    <p>{{ message }}</p>
+    <ComponenteHijo />
+  </div>
 </template>
 
-<script>
-import { provide } from 'vue';
-import Hijo from './Hijo.vue';
+<script setup>
+import { provide, ref } from 'vue';
+import ComponenteHijo from './ComponenteHijo.vue';
 
-export default {
-  setup() {
-    provide('mensaje', 'Hola desde el padre');
-  },
-};
+// Creamos una propiedad reactiva para el mensaje
+const message = ref('Este es un mensaje del componente padre');
+
+// Usamos provide para compartir el valor con los componentes hijos
+provide('message', message);
 </script>
+
 ```
 
 **(Hijo)**
 ```vue
 <template>
-  <p>{{ mensaje }}</p>
+  <div>
+    <h2>Componente Hijo</h2>
+    <p>{{ injectedMessage }}</p>
+  </div>
 </template>
 
-<script>
-import { inject } from 'vue';
+<script setup>
+import { inject, ref } from 'vue';
 
-export default {
-  setup() {
-    const mensaje = inject('mensaje');
-    return { mensaje };
-  },
-};
+// Usamos inject para acceder al valor proporcionado por el componente padre
+const injectedMessage = inject('message');
+
+// Si el mensaje no está disponible, le asignamos un valor por defecto
+if (!injectedMessage) {
+  injectedMessage = ref('No hay mensaje disponible');
+}
 </script>
 ```
-
 ---
 
 ### Conectarse a un JSON
@@ -303,21 +314,18 @@ Para consumir un archivo JSON local en Vue.js, puedes importarlo directamente co
 ```vue
 <template>
   <div v-for="usuario in usuarios" :key="usuario.id">
-    <p>{{ usuario.nombre }}</p>
+   // hemos creado una variable donde extraemos los nombres // usuarios.nombre (sin variable)
+    <p>{{ usuarios }}</p>
   </div>
 </template>
 
-<script>
+<script setup>
 import usuariosData from '@/data/usuarios.json';
 
-export default {
-  data() {
-    return {
-      usuarios: usuariosData,
-    };
-  },
-};
+// Directamente exportamos los datos importados, sin necesidad de usar ref
+const usuarios = usuariosData.nombre;
 </script>
+
 ```
 
 ---
