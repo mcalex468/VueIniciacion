@@ -2,7 +2,7 @@
 
 # Indice
 
-1. [Creación de Proyecto](#creacion-de-proyecto)
+1. [Creación de Proyecto](#creacion-proyecto)
 2. [Conceptos Básicos de Vue.js](#conceptos-básicos-de-vuejs)
    - [ref()](#ref)
    - [reactive()](#reactive)
