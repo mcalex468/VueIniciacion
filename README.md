@@ -13,7 +13,7 @@
    - [v-if / v-else](#v-if--v-else)
    - [v-show](#v-show)
    - [v-on](#v-on)
-4. [Temas Específicos de Vue.js](#temas-específicos-de-vuejs)
+4. [Temas Específicos de Vue.js](#temas-específicos-de-vue.js)
    - [defineProps](#defineprops)
    - [defineEmits](#defineemits)
    - [computed](#computed)
@@ -51,7 +51,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash 
 ref(): Aquesta funció és ideal per fer reactius valors simples com números, cadenes de text o booleans. 
 reactive(): Aquesta funció és ideal per fer reactius objectes.
 
-## Directives
+## Directivas
 Directives:  Són atributs especials que amb el prefix v-. Ens permeten aplicar actualitzacions de forma reactiva al DOM.
 
 El data binding es refereix a la vinculació automàtica entre les dades d'un component i la seva interfície d'usuari. 
@@ -165,7 +165,7 @@ v-show para ocultar un elemento sin sacarlo del DOM.
 @ o v-on para manejar eventos.
 
 
---> [Indice](#indice)
+[Indice](#indice)
 
 ## Temas Específicos de Vue.js
 
