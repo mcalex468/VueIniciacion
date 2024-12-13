@@ -1,5 +1,5 @@
 <template>
-    <h1>Vista Router</h1>
+    <h1>Vista Emit</h1>
     </template>
     
     <script setup>
