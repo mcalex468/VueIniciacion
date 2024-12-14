@@ -4,7 +4,13 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    component: () => import('@/views/Home.vue'),
+  },
+  {
+    path: '/computed', 
+    name: 'computed',
     component: () => import('@/views/Computed.vue'),
+    props: true,
   },
   {
     path: '/props', 

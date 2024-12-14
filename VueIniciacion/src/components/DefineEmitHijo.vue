@@ -1,20 +1,26 @@
 <template>
   <div>
-    <input type="text" name="nombre" placeholder="Escribe tu nombre">
+    <h1>Componente Emit Hijo</h1>
+    <input
+      type="text"
+      v-model="nombre"
+      name="nombre"
+      placeholder="Escribe tu nombre"
+    />
     <button @click="enviarM">Enviar</button>
   </div>
 </template>
 
 <script setup>
-// Declaramos que el hijo va a emitir un evento llamado 'sendMessage'
 import { defineEmits } from 'vue';
+import { ref } from 'vue';
 
+// Definir el evento que el componente emitirá
 const emit = defineEmits(['enviarMensj']);
-
 const nombre = ref('');
-// Función para emitir el evento cuando el botón es presionado
+
+// Función para emitir el evento
 const enviarM = () => {
-  // key , valor  ---> Viene a ser clave valor , estas pasanado '...' con este valor
   emit('enviarMensj', nombre.value);
 };
 </script>
