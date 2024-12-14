@@ -4,22 +4,23 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/Computed.vue'),
   },
   {
-    path: '/props', // Asegúrate de que el path sea único
+    path: '/props', 
     name: 'props',
-    component: () => import('@/components/DefinePropsHijo.vue'),
+    component: () => import('@/views/Props.vue'),
+    props: true,
   },
   {
-    path: '/emit', // Cambiar a un path único
+    path: '/emit', 
     name: 'emit',
     component: () => import('@/views/Emit.vue'),
   },
   {
-    path: '/router', // Cambiar a un path único
-    name: 'router',
-    component: () => import('@/views/Router.vue'),
+    path: '/provideinject', 
+    name: 'provide',
+    component: () => import('@/views/ProvideInject.vue'),
   }
 ];
 

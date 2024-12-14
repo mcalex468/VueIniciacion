@@ -14,6 +14,7 @@ const emit = defineEmits(['enviarMensj']);
 const nombre = ref('');
 // Función para emitir el evento cuando el botón es presionado
 const enviarM = () => {
+  // key , valor  ---> Viene a ser clave valor , estas pasanado '...' con este valor
   emit('enviarMensj', nombre.value);
 };
 </script>

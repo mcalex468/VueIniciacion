@@ -2,7 +2,7 @@
   <div>
     <h1>Nombre recibido: {{ userName }}</h1>
     <!-- Escuchamos el evento submitName del hijo -->
-    <DefineEmitHijo @submitName="handleName" />
+    <DefineEmitHijo @enviarMensj="pillarNombre" />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import DefineEmitHijo from './DefineEmitHijo.vue';
 const userName = ref('');
 
 // Función que actualiza el nombre
-const handleName = (name) => {
+const pillarNombre = (name) => {
   userName.value = name;
 };
 </script>

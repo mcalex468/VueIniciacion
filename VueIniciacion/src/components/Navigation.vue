@@ -1,10 +1,14 @@
 <template>
     <div>
-        <nav>
-            <router-link to="/" class="nav">Home</router-link>
-            <router-link to="/props" class="nav">Props</router-link>
-            <router-link to="/emit" class="nav">Emit</router-link>
-            <router-link to="/router">Router</router-link>
+        <nav class="nav">
+            <RouterLink to="/computed">Computed</RouterLink>
+            <RouterLink to="/props">Props</RouterLink>
+            <RouterLink to="/emit">Emit</RouterLink>
+            <RouterLink to="/provideinject">Provide Inject</RouterLink>
         </nav>
     </div>
 </template>
+
+<script setup>
+import { RouterLink } from 'vue-router';
+</script>

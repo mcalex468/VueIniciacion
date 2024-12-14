@@ -1,16 +1,13 @@
 <template>
-    <div>
-      <h1>Vista Props</h1>
-      
-      <!-- Usamos router-link para navegar a la subruta 'define-props' -->
-      <router-link to="/props/define-props">Ver DefinePropsHijo</router-link>
+  <div>
+    <h1>Vista Props</h1>
+    <!-- Aquí estamos llamando a Componente1, que a su vez renderiza Componente2 -->
+    <DefinePropsPadre/>
+  </div>
+</template>
+
   
-      <!-- Aquí solo se renderiza el componente DefinePropsHijo cuando se navega a la subruta -->
-      <router-view :nom="nom" ></router-view>  <!-- Aquí se cargará el componente definido en la subruta -->
-    </div>
-  </template>
-  
-  <script setup>
-  // No necesitas importar DefinePropsHijo directamente, ya que se carga mediante el router-link
-  </script>
+<script setup>
+import DefinePropsPadre from '@/components/DefinePropsPadre.vue';
+</script>
   
