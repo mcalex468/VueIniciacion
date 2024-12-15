@@ -2,7 +2,7 @@
     <div class="productos">
         <div v-for="producto in productos" :key="producto.name">
             {{ producto.name }} - {{  calcularPrecio(producto.price) }}
-            <button @click="añadirProducto(producto)">Añadir a la Cesta</button>
+            <button @click="agregarProducto(producto)">Añadir a la Cesta</button>
         </div>
     </div>
 </template>
@@ -11,11 +11,11 @@
 import { inject } from 'vue';
 
 const productos = inject('productos');
-const agregarProducto = inject('agregarProducto');
+const añadirCarrito = inject('agregarProducto');
 const calcularPrecio = inject('calcularPrecio')
 
-const añadirProducto = (producto) => {
-    agregarProducto(producto);
+const agregarProducto = (producto) => {
+    añadirCarrito(producto);
 }
 
 </script>

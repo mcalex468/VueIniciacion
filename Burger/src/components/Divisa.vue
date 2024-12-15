@@ -11,6 +11,6 @@
 <script setup>
 import { inject } from 'vue';
 
-
 const divisaSeleccionada = inject('divisaSeleccionada');
+
 </script>

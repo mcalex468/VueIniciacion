@@ -1,62 +1,55 @@
 <template>
-    <h1>{{ nombre }}</h1>
-    <input v-model="nombre" type="text" name="nombre" class="titulo">
-
-    <Divisa/>
-    <Producto @agregarProducto="agregarProducto"/>
-    <ListaComanda/>
+  <h1>{{ nombre }}</h1>
+  <input v-model="nombre" type="text" name="nombre" class="titulo">
+  <Divisa />
+  <Producto />
+  <ListaComanda />
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { provide } from 'vue';
+import { ref, provide } from 'vue';
 import ListaComanda from './components/ListaComanda.vue';
 import Divisa from './components/Divisa.vue';
 import Producto from './components/Producto.vue';
 
+// Declarar todas las constantes primero
 const productos = [
-    { name: "Hamburger 🍔.", price: 5 },
-    { name: "Cheeseburger 🧀", price: 6 },
-    { name: "Impossible Burger 🥕", price: 7 },
-    { name: "Fries 🍟", price: 2 }
+    { id: 1, name: "Hamburger 🍔.", price: 5 },
+    { id: 2, name: "Cheeseburger 🧀", price: 6 },
+    { id: 3, name: "Impossible Burger 🥕", price: 7 },
+    { id: 4, name: "Fries 🍟", price: 2 }
 ];
 
 const nombre = ref('');
 const carrito = ref([]);
-
-provide('productos',productos);
-provide('listaCompra',carrito);
-provide('agregarProducto',agregarProducto);
-provide('calcularPrecio',calcularPrecio);
-provide('divisaSeleccionada',divisaSeleccionada);
-
 const divisaSeleccionada = ref('EUR');
 
-const agregarProducto = (producto) =>{
+// Declarar funciones antes de usarlas en provide
+const agregarProducto = (producto) => {
     carrito.value.push(producto);
-}
-
-const calcularPrecio = (precio) => {
-  let precioConvertido = precio;
-  // Si la divisa seleccionada es USD, aplicamos el tipo de cambio
-  if (divisaSeleccionada.value === 'USD') {
-    precioConvertido = precio * 1.1;
-  } 
-  // Si es EUR, no cambiamos el precio (ya está en euros)
-  else if (divisaSeleccionada.value === 'EUR') {
-    precioConvertido = precio; 
-  }
-  // Redondear el precio a 2 decimales
-  precioConvertido = precioConvertido.toFixed(2);
-  // Añadir el símbolo de la divisa al precio
-  let precioFinal = '';
-  if (divisaSeleccionada.value === 'USD') {
-    precioFinal = `${precioConvertido} $`;
-  } else if (divisaSeleccionada.value === 'EUR') {
-    precioFinal = `${precioConvertido} €`;
-  }
-
-  return precioFinal;
 };
 
+// Funcion para cambiar el valor
+const calcularPrecio = (precio) => {
+    let precioConvertido;
+
+    if (divisaSeleccionada.value === 'USD') {
+        precioConvertido = (precio * 1.1).toFixed(2);
+        return `${precioConvertido} $`;
+    }
+
+    precioConvertido = precio.toFixed(2);
+    return `${precioConvertido} €`;
+};
+
+// Usar provide después de que todas las constantes y funciones estén definidas
+provide('productos', productos);
+provide('listaCompra', carrito);
+provide('agregarProducto', agregarProducto);
+provide('divisaSeleccionada', divisaSeleccionada);
+provide('calcularPrecio', calcularPrecio);
 </script>
+
+
+
+
