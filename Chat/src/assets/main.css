@@ -1,0 +1,52 @@
+.container {
+  background-color: rgb(184, 250, 233);
+  border-radius: 10px; /* Hacemos las esquinas más redondeadas */
+  width: 300px; /* Ajustamos el ancho para un diseño más amplio */
+  margin: 20px auto; /* Espaciado vertical y centrado horizontal */
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave y elegante */
+}
+
+.container h2 {
+  text-decoration: underline;
+  color: #333; /* Un gris oscuro más moderno */
+  text-align: center; /* Centramos el título */
+  margin-bottom: 10px;
+}
+
+.lista {
+  border-radius: 10px; /* Esquinas redondeadas */
+  background-color: rgb(153, 243, 176);
+  padding: 10px;
+  color: rgb(80, 80, 80); /* Un gris más oscuro para mejor legibilidad */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar la lista */
+  margin-bottom: 10px; /* Espaciado debajo de la lista */
+}
+
+form {
+  display: flex;
+  gap: 10px; /* Espaciado entre el input y el botón */
+}
+
+input {
+  flex: 1; /* Input ocupa el espacio restante */
+  padding: 8px;
+  border: 1px solid #ccc; /* Borde ligero */
+  border-radius: 5px; /* Esquinas redondeadas */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna sutil */
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #38c458; /* Verde atractivo */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para el botón */
+  transition: background-color 0.6s ease;
+}
+
+button:hover {
+  background-color: #31e9ab; /* Verde más oscuro al pasar el ratón */
+}
