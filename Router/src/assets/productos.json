@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "name": "Product A",
+        "description": "This is the description of Product A"
+    },
+    {
+        "id": "2",
+        "name": "Product B",
+        "description": "This is the description of Product B"
+    },
+    {
+        "id": "3",
+        "name": "Product C",
+        "description": "This is the description of Product C"
+    },
+    {
+        "id": "4",
+        "name": "Product D",
+        "description": "This is the description of Product D"
+    },
+    {
+        "id": "5",
+        "name": "Product E",
+        "description": "This is the description of Product E"
+    },
+    {
+        "id": "6",
+        "name": "Product F",
+        "description": "This is the description of Product F"
+    },
+    {
+        "id": "7",
+        "name": "Product G",
+        "description": "This is the description of Product G"
+    },
+    {
+        "id": "8",
+        "name": "Product H",
+        "description": "This is the description of Product H"
+    },
+    {
+        "id": "9",
+        "name": "Product I",
+        "description": "This is the description of Product I"
+    },
+    {
+        "id": "10",
+        "name": "Product J",
+        "description": "This is the description of Product J"
+    }
+]
