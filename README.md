@@ -429,6 +429,7 @@ export default router;
 ## Vista Detalle
 En el componente donde mostramos el articulo, instauramos un RouterLink, que pasamos el path del detalle del articulo,
 basandonos a lo que hemos pasado en el path del index.js (Router) , para asi al hacer click encima, se ejecute la vista Detalle
+### Componente 
 ```vue
 <template>
     <h1>Lista Producto</h1>
@@ -444,7 +445,7 @@ basandonos a lo que hemos pasado en el path del index.js (Router) , para asi al 
 import productos from '@/assets/productos.json';
 </script>
 ```
-
+### Vista
 Una vez clicada la vista, cambiara esta vista por lo que mostremos en la Vista Detalle, entonces, en esta usando $route.params 
 podremos mostrar absolutamente todos los parametros que hemos pasado posiblemente de un json
 ```vue
@@ -460,7 +461,24 @@ import productos from '@/assets/productos.json';
 import { RouterLink } from 'vue-router';
 </script>
 ```
-
+### Index.js
+``vue
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import('../views/ProductsView.vue'),
+    },
+    {
+      // Aqui hemos pasado id - name - description , por eso en el 
+      // routerlink del Componente Products se comparte
+      path: '/productDetail/:id/:name/:description',
+      name: 'productDetail',
+      component: () => import('../views/ProductDetailView.vue'),
+    },
+  ],
+})
+export default router
+``
 --> [Indice](#indice)
 ---
 
