@@ -1,5 +1,6 @@
 <template>
     <div class="lista">
+        <!-- Utilizamos v-for en la lista injectada (carrito) -->
         <div v-for="producto in listaCompra" :key="producto.id">
             {{ producto.name }} - {{  calcularPrecio(producto.price) }}
         </div>
