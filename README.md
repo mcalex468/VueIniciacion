@@ -3,7 +3,7 @@
 # Indice
 
 1. [Creación de Proyecto](#creacion-proyecto)
-2. [Conceptos Básicos de Vue.js](#conceptos-básicos-de-vuejs)
+2. [Conceptos Básicos de Vue.js](#conceptos-basicos-de-vue)
    - [ref()](#ref)
    - [reactive()](#reactive)
 3. [Directivas](#directivas)
@@ -13,16 +13,14 @@
    - [v-if / v-else](#v-if--v-else)
    - [v-show](#v-show)
    - [v-on](#v-on)
-4. [Temas Específicos de Vue.js](#temas-específicos-de-vue.js)
+4. [Temas Específicos de Vue.js](#temas-especificos-de-vue)
    - [defineProps](#defineprops)
    - [defineEmits](#defineemits)
    - [computed](#computed)
    - [provide / inject](#provide--inject)
-5. [Conexión a JSON](#conexión-a-json)
-6. [Navegación con Vue Router](#navegación-con-vue-router)
-   - [router-link](#router-link)
-   - [router-view](#router-view)
-   - [Configuración del Router (Index.js)](#configuración-del-router-indexjs)
+5. [Conexión a JSON](#conectarse-a-un-json)
+6. [Router Simple](#router-simple)
+7. [Router Compacto](#router-compacto)
 
 
 
@@ -47,7 +45,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash 
    npm install
    npm run dev
    
-## Conceptos Básicos de Vue.js
+## Conceptos Basicos de Vue
 
 ref(): Aquesta funció és ideal per fer reactius valors simples com números, cadenes de text o booleans. 
 reactive(): Aquesta funció és ideal per fer reactius objectes.
@@ -168,7 +166,7 @@ v-show para ocultar un elemento sin sacarlo del DOM.
 
 [Indice](#indice)
 
-## Temas Específicos de Vue.js
+## Temas Especificos de Vue
 
 ### defineProps
 El `defineProps` es una función dEl component pare vol enviar el nomContacte al component fill, observa la sintaxi, afegim : nom (v-model) i a continuació la variable amb la informació a enviar.
@@ -210,6 +208,7 @@ const props = defineProps({
 </script>
 ```
 ---
+[Indice](#indice)
 
 ### defineEmits
 El `defineEmits` permite definir eventos personalizados que un componente hijo puede emitir hacia su componente padre. Esto es útil para comunicar acciones o datos hacia el componente que lo contiene.
@@ -261,7 +260,7 @@ const increaseCount = () => {
 ```
 ---
 
---> [Indice](#indice)
+[Indice](#indice)
 
 ### computed
 Las propiedades computadas (`computed`) son funciones que devuelven valores derivados de las propiedades del estado reactivo. Se recalculan automáticamente cuando cambian las propiedades dependientes. Muestran el valor a la vez que se escribe
@@ -341,9 +340,9 @@ if (!injectedMessage) {
 ```
 ---
 
---> [Indice](#indice)
+[Indice](#indice)
 
-### Conectarse a un JSON
+### Conectarse a un json
 Para consumir un archivo JSON local en Vue.js, puedes importarlo directamente como un módulo de JavaScript.
 
 ```vue
@@ -364,11 +363,12 @@ const usuarios = usuariosData.nombre;
 ```
 
 ---
+# Router Simple
 
 ### router-link
 El `router-link` es un componente de Vue Router que permite crear enlaces de navegación entre diferentes rutas de la aplicación, de forma declarativa y con soporte para transiciones y estilos activos.
-**(Menu.vue)**
 
+**(Menu.vue)**
 Este componente simplemente sera donde guardemos nuestros `Router-Link` con tal de optimizar
 
 ```vue
@@ -380,7 +380,7 @@ Este componente simplemente sera donde guardemos nuestros `Router-Link` con tal 
 </template>
 
 <script setup>
-// No necesitamos código adicional aquí ya que es un componente puramente de presentación.
+// Sin codigo ya que es un componente de presentación.
 </script
 ```
 ### router-view
@@ -426,60 +426,116 @@ const router = createRouter({
 
 export default router;
 ```
+[Indice](#indice)
+
+# Router Compacto
+Este es un router conmpacto debido a que mejora codigo, utilizamos children , props i params, lo cual en la vista podremos utilizar directamente los parametros pasado, ya que utilizamos el $route en el index.js directamente, luego con un defineProps en la vista , cogemos las props pasadas directamente, para asi mostrarlo en y en la ruta del index.js tambien deben de estar porque sino no funciona.
 
 ## Vista Detalle
 En el componente donde mostramos el articulo, instauramos un RouterLink, que pasamos el path del detalle del articulo,
 basandonos a lo que hemos pasado en el path del index.js (Router) , para asi al hacer click encima, se ejecute la vista Detalle
+
 ### Componente 
 ```vue
 <template>
     <h1>Lista Producto</h1>
     <div v-for="producto in productos" :key="producto.id">
         {{ producto.name }} - {{ producto.description }}
-        <!-- En el routerLink pasamos todo lo que hayamos pasado por el path del index.js-->
-        <RouterLink :to="'/productDetail/' + productos.id + '/' + productos.name + 
-        '/' + productos.description">{{ producto.id }}</RouterLink>
+        <!-- Ruta relativa para la ruta hijo, utilizando el name -->
+        <RouterLink 
+            :to="{
+                name: 'productDetail', 
+                params: { 
+                    id: producto.id, 
+                    name: producto.name, 
+                    description: producto.description 
+                }
+            }"
+        >{{ producto.id }}</RouterLink>
     </div>
-</template>
-
-<script setup>
-import productos from '@/assets/productos.json';
-</script>
+ </template>
+ 
+ <script setup>
+ // Importamos el json con nombre productos
+ import productos from '@/assets/productos.json';
+ import { RouterLink } from 'vue-router';
+ </script>
+ 
 ```
 ### Vista
-Una vez clicada la vista, cambiara esta vista por lo que mostremos en la Vista Detalle, entonces, en esta usando $route.params 
-podremos mostrar absolutamente todos los parametros que hemos pasado posiblemente de un json
+Una vez clicada la vista, cambiara esta vista por lo que mostremos en la Vista Detalle, entonces,al utilizar defineProps, cogemos los daatos,  en el index.js ya esta  usando $route.params , como props entonces podremos mostrar absolutamente todos los parametros que hemos pasado como props.
+
+**(DetailProduct)**
 ```vue
 <template>
     <h2>Detail Product</h2>
-    <p>{{ $route.params.id }}</p>
-    <p>{{ $route.params.name }}</p>
-    <p>{{ $route.params.description }}</p>
-</template>
-
-<script setup>
-import productos from '@/assets/productos.json';
-import { RouterLink } from 'vue-router';
-</script>
+    <p>ID: {{ id }}</p>
+    <p>Name: {{ name }}</p>
+    <p>Description: {{ description }}</p>
+  </template>
+  
+  <script setup>
+  import { defineProps } from 'vue';
+  // Definir las props que hemos pasado por parametro en el Product
+  defineProps({
+    id: String,
+    name: String,
+    description: String
+  })
+  </script>
 ```
-### Index.js
-``vue
+**(Product)**
+Hay que tener en cuenta ya que detail es un hijo de product, si importamos a una vista el componente product, tenemos que 
+importar tambien el RouterView, para que se renderize bien la vista hijo dentro del padre, sino no se mostrará.
+
+### Index.js 
+
+``import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
     {
+      path: '/',
+      name: 'home',
+      component: () => import('../views/HomeView.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('../views/ContactView.vue'),
+    },
+    {
+      // Vista Padre Producto
       path: '/product',
       name: 'product',
       component: () => import('../views/ProductsView.vue'),
-    },
-    {
-      // Aqui hemos pasado id - name - description , por eso en el 
-      // routerlink del Componente Products se comparte
-      path: '/productDetail/:id/:name/:description',
-      name: 'productDetail',
-      component: () => import('../views/ProductDetailView.vue'),
+      children: [
+        {
+          // Aqui hemos pasado id - name - description , para que la ruta cambie 
+          // y los props funcionen , si se quita no funciona el route !
+          path: 'productDetail/:id/:name/:description',
+          name: 'productDetail',
+          component: () => import('../views/ProductDetailView.vue'),
+          props: route=> ({ 
+            id:route.params.id, 
+            name:route.params.name,
+            description:route.params.description })
+      
+        },
+      ]
     },
   ],
 })
+
 export default router
-``
---> [Indice](#indice)
+```
+
+[Indice](#indice)
 ---
 
