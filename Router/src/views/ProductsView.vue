@@ -1,6 +1,5 @@
 <template>
 <Products/>
-<RouterView/>
 </template>
 
 <script setup>

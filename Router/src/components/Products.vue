@@ -14,6 +14,7 @@
             }"
         >{{ producto.id }}</RouterLink>
     </div>
+    <RouterView/>
  </template>
  
  <script setup>
