@@ -1,8 +1,8 @@
 <template>
     <h2>Detail Product</h2>
-    <p>{{ $route.params.id }}</p>
-    <p>{{ $route.params.name }}</p>
-    <p>{{ $route.params.description }}</p>
+    <p>{{ id }}</p>
+    <p>{{ name }}</p>
+    <p>{{ description }}</p>
 </template>
 
 <script setup>

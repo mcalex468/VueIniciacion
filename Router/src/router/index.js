@@ -30,6 +30,11 @@ const router = createRouter({
       path: '/productDetail/:id/:name/:description',
       name: 'productDetail',
       component: () => import('../views/ProductDetailView.vue'),
+      props: route=>({...route.params
+        ,id:parseInt(route.params.id)
+        ,name:parseInt(route.params.name)
+        ,description:parseInt(route.params.description)
+      })
     },
   ],
 })
