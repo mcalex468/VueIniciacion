@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,21 +19,24 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue'),
     },
     {
+      // Vista Padre Producto
       path: '/product',
       name: 'product',
       component: () => import('../views/ProductsView.vue'),
-    },
-    {
-      // Aqui hemos pasado id - name - description , por eso en el 
-      // routerlink del Componente Products se comparte
-      path: '/productDetail/:id/:name/:description',
-      name: 'productDetail',
-      component: () => import('../views/ProductDetailView.vue'),
-      props: route=>({...route.params
-        ,id:parseInt(route.params.id)
-        ,name:parseInt(route.params.name)
-        ,description:parseInt(route.params.description)
-      })
+      children: [
+        {
+          // Aqui hemos pasado id - name - description , para que la ruta cambie 
+          // y los props funcionen , si se quita no funciona el route !
+          path: 'productDetail/:id/:name/:description',
+          name: 'productDetail',
+          component: () => import('../views/ProductDetailView.vue'),
+          props: route=> ({ 
+            id:route.params.id, 
+            name:route.params.name,
+            description:route.params.description })
+      
+        },
+      ]
     },
   ],
 })
