@@ -25,6 +25,7 @@ const router = createRouter({
       component: () => import('../views/ProductsView.vue'),
       children: [
         {
+          // Vista Hijo Producto
           // Aqui hemos pasado id - name - description , para que la ruta cambie 
           // y los props funcionen , si se quita no funciona el route !
           path: 'productDetail/:id/:name/:description',
