@@ -17,6 +17,11 @@
   /*
   // Podemos declarar asi, por si tenemos que hacer 
   // alguna funcion, usamos props.id para acceder al valor
+
+  connst destination = computed(() =>
+  json.destinations.find(destination => destination.id === props.id)
+  );
+  
   const props = defineProps({
   id: {
     type: Number,
