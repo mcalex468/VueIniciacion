@@ -490,7 +490,8 @@ importar tambien el RouterView, para que se renderize bien la vista hijo dentro 
 
 ### Index.js 
 
-``import { createRouter, createWebHistory } from 'vue-router'
+```vue
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -537,5 +538,6 @@ export default router
 ```
 
 [Indice](#indice)
+
 ---
 
