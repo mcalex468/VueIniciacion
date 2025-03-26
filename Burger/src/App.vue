@@ -29,6 +29,8 @@ const agregarProducto = (producto) => {
     carrito.value.push(producto);
 };
 
+console.log("HOLA")
+
 // Funcion para cambiar el valor
 const calcularPrecio = (precio) => {
     let precioConvertido;
